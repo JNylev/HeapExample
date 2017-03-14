@@ -47,6 +47,10 @@ public class PassengerConsumer
         }
 
         passenger = queue.dequeue();
+        if (passenger==null) {
+        System.out.println("Jeg er sgu null ;SS");
+            
+        }
         switch (passenger.getCategory())
         {
             case LateToFlight:
