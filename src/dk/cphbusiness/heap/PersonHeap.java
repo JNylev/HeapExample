@@ -17,7 +17,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
 {
     private Passenger[] data; 
     private int size=0;
-    private int head=0;
+    private int head=1;
     private int parentOf(int p){return p/2;}
     private int leftOf(int p){return 2*p;}
     private int rightOf(int p){return 2*p+1;}
@@ -41,10 +41,10 @@ public class PersonHeap implements PriorityQueue<Passenger>
     public void enqueue(Passenger person)
     {
         int p =++size;
+        data[p] = person;
         if (p==1) {
             return;
         }
-        data[p] = person;
         int pp = parentOf(p);
         if (data[p].compareTo(data[pp])>=0)
         {
