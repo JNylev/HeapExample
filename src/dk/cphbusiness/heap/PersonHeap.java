@@ -44,6 +44,28 @@ public class PersonHeap implements PriorityQueue<Passenger>
         data[p] = person;
         System.out.println("p ="+p+ " og size er "+ size);
         size++;
+        heaping(p);
+//        if (p==1) {
+//            return;
+//        }
+//        int pp = parentOf(p);
+//        if (data[p]==null||data[pp] == null) {
+//            System.out.println("en af os er null");
+//        }
+//        if (data[pp]==null) {
+//            return;
+//        }
+//        if (data[p].compareTo(data[pp])>=0)
+//        {
+//            return;
+//        }
+//        tail = (tail + 1) % data.length;
+//        swap(p,pp);
+//        p=pp;
+                
+    }
+    public void heaping(int p)
+    {
         if (p==1) {
             return;
         }
@@ -61,9 +83,8 @@ public class PersonHeap implements PriorityQueue<Passenger>
         tail = (tail + 1) % data.length;
         swap(p,pp);
         p=pp;
-                
+        heaping(p);
     }
-    
     
     
     
@@ -91,7 +112,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
         {
             throw new NoSuchElementException("Cannot remove from empty queue");
         }
-        Passenger item = data[head];
+        Passenger item = data[1];
         System.out.println( "head er" + head);
         if (item==null) {
             System.out.println("jeg er null gg");
