@@ -15,12 +15,12 @@ public class Program
     private static Clock clock;
 
     private static void setup()
-    {
+    { 
         for (int hour = 7; hour <= 22; hour++)
         {
             planes.add(new Plane(new Time(hour, 00, 00)));
         }
-        queue = new PersonHeap(1000);
+        queue = new PersonHeap(100);
         producer = new PassengerProducer(planes, queue);
         consumer = new PassengerConsumer(planes, queue);
         clock = new Clock(producer, consumer, new Time(05, 00, 00));

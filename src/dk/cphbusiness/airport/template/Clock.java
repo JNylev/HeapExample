@@ -40,6 +40,11 @@ public class Clock implements Runnable
                 producer.tick(this);
                 consumer.tick(this);
                 millis += 1000;
+                // we dont want this running forever.
+               if(consumer.queue.size() >= 10)
+               {
+                   running = false;
+               }
             }
         }
         catch (InterruptedException ex)

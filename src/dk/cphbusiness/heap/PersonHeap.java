@@ -56,7 +56,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
         size++;
         data[size] = person;
   
-       // System.out.println("data: 1,2,3 --- 1: " + data[1]+" 2: "+data[2]+" 3: "+data[3] + " -----");
+        System.out.println("data: 1,2,3 --- 1: " + data[1]+" 2: "+data[2]+" 3: "+data[3] + " -----");
         heapingUp(size); 
       
     }

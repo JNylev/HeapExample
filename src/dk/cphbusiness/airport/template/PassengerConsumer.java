@@ -7,7 +7,7 @@ public class PassengerConsumer
 {
 
     private final List<Plane> planes;
-    private final PriorityQueue<Passenger> queue;
+    public final PriorityQueue<Passenger> queue;
     private int processingTicksLeft = 0;
     // Passenger being processed
     private Passenger passenger;
@@ -36,14 +36,13 @@ public class PassengerConsumer
             }
             else
             {
-                passenger.setStatus(Status.Boarded);
-                System.out.println("Passenger " + passenger + " has boarded");
+                passenger.setStatus(Status.Boarded); 
+               System.out.println("Passenger " + passenger + " has boarded");
             }
         }
 
-        else if (!queue.isEmpty())
+        if (!queue.isEmpty())
         {
-
             passenger = queue.dequeue();
 
             switch (passenger.getCategory())
