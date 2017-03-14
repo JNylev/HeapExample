@@ -78,7 +78,6 @@ public class PassengerProducer
         Passenger passenger = new Passenger(nextPassengerId++, now, category, plane);
         System.out.println("Passenger " + passenger + " added to queue");
         queue.enqueue(passenger);
-
         processingTicksLeft = randomizer.nextInt(120);
     }
 

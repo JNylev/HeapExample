@@ -41,35 +41,30 @@ public class PassengerConsumer
             }
         }
 
-        if (queue.isEmpty())
+        else if (!queue.isEmpty())
         {
-            return;
-        }
 
-        passenger = queue.dequeue();
-        if (passenger==null) {
-        System.out.println("Jeg er sgu null ;SS");
-            
-        }
-        switch (passenger.getCategory())
-        {
-            case LateToFlight:
-                processingTicksLeft = 60;
-                break;
-            case BusinessClass:
-                processingTicksLeft = 60;
-                break;
-            case Disabled:
-                processingTicksLeft = 180;
-                break;
-            case Family:
-                processingTicksLeft = 180;
-                break;
-            case Monkey:
-                processingTicksLeft = 60;
-                break;
-        }
+            passenger = queue.dequeue();
 
+            switch (passenger.getCategory())
+            {
+                case LateToFlight:
+                    processingTicksLeft = 60;
+                    break;
+                case BusinessClass:
+                    processingTicksLeft = 60;
+                    break;
+                case Disabled:
+                    processingTicksLeft = 180;
+                    break;
+                case Family:
+                    processingTicksLeft = 180;
+                    break;
+                case Monkey:
+                    processingTicksLeft = 60;
+                    break;
+            }
+        }
     }
 
 }

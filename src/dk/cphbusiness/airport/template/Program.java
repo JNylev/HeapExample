@@ -20,7 +20,7 @@ public class Program
         {
             planes.add(new Plane(new Time(hour, 00, 00)));
         }
-        queue = new PersonHeap(10);
+        queue = new PersonHeap(1000);
         producer = new PassengerProducer(planes, queue);
         consumer = new PassengerConsumer(planes, queue);
         clock = new Clock(producer, consumer, new Time(05, 00, 00));
