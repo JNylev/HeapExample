@@ -54,7 +54,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
     {
         int p = ++size;
         data[p] = person;
-        System.out.println("p =" + p + " og size er " + size);
+        //System.out.println("p =" + p + " og size er " + size);
         size++;
         heapingUp(p);
 //        if (p==1) {
@@ -104,24 +104,40 @@ public class PersonHeap implements PriorityQueue<Passenger>
             return;
         }
         else if(data[leftOf(index)] == null)
-        {
-            swap(index, 2 * index + 1);
+        {   
+            if (data[index].compareTo(data[rightOf(index)])>=0) {
+                return;
+            }
+            swap(index, rightOf(index));
             return;
         }
         else if (data[rightOf(index)] == null) {
-            swap(index, 2 * index);
+            if (data[index].compareTo(data[leftOf(index)])>=0) {
+                return;
+            }
+            swap(index, leftOf(index));
             return;
         }
+        
+        
         if (data[leftOf(index)].compareTo(data[rightOf(index)]) >= 0) {
             //leftOf is chosen
-            swap(index, 2 * index);
-            heapingDown(2 * index);
+            if (data[index].compareTo(data[leftOf(index)])>=0) {
+                return;
+            }
+
+            swap(index, leftOf(index));
+            heapingDown(leftOf(index));
         }
         else {
-            swap(index, 2 * index + 1);
-            heapingDown(2 * index + 1);
+            if (data[index].compareTo(data[rightOf(index)])>=0) {
+                return;
+            }
+            
+            swap(index, rightOf(index));
+            heapingDown(rightOf(index));
         }
-        return;
+        
 
     }
 
@@ -148,15 +164,22 @@ public class PersonHeap implements PriorityQueue<Passenger>
             throw new NoSuchElementException("Cannot remove from empty queue");
         }
         Passenger item = data[1];
-        System.out.println("head er" + head);
+        System.out.println(data[1]+""+data[2]+""+data[3]);
         if (item == null) {
             System.out.println("jeg er null gg");
         }
-        System.out.println("og Mit ID er" + item.getId());
+        System.out.println("og Mit ID er" + item.getCategory());
         data[1] = null;
+        swap(1,size);
         heapingDown(1);
         head = (head + 1);
         size--;
         return item;
+    }
+    public void showData()
+    {
+        for (int i = 0; i < 10; i++) {
+            
+        }
     }
 }
