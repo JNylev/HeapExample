@@ -1,7 +1,7 @@
 package dk.cphbusiness.airport.template;
 
-import dk.cphbusiness.algorithm.examples.queues.NotPrioritisingPassengerArrayQueue;
 import dk.cphbusiness.algorithm.examples.queues.PriorityQueue;
+import dk.cphbusiness.heap.PersonHeap;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class Program
         {
             planes.add(new Plane(new Time(hour, 00, 00)));
         }
-        queue = new NotPrioritisingPassengerArrayQueue(10000);
+        queue = new PersonHeap(10);
         producer = new PassengerProducer(planes, queue);
         consumer = new PassengerConsumer(planes, queue);
         clock = new Clock(producer, consumer, new Time(05, 00, 00));

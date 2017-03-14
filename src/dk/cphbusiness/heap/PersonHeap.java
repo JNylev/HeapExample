@@ -21,7 +21,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
     private int parentOf(int p){return p/2;}
     private int leftOf(int p){return 2*p;}
     private int rightOf(int p){return 2*p+1;}
-
+    private int tail = 0;
     public PersonHeap(int capacity)
     {
         data = new Passenger[capacity];
@@ -41,12 +41,17 @@ public class PersonHeap implements PriorityQueue<Passenger>
     public void enqueue(Passenger person)
     {
         int p =++size;
+        if (p==1) {
+            return;
+        }
         data[p] = person;
         int pp = parentOf(p);
         if (data[p].compareTo(data[pp])>=0)
         {
             return;
         }
+        tail = (tail + 1) % data.length;
+        size++;
         swap(p,pp);
         p=pp;
                 
@@ -72,10 +77,17 @@ public class PersonHeap implements PriorityQueue<Passenger>
         return data.length-1;
     }
     @Override
+    
     public Passenger dequeue()
     {
-        if (size==0) throw new NoSuchElementException();
-        Passenger result = data[1];
-        return result;
+        if (size == 0)
+        {
+            throw new NoSuchElementException("Cannot remove from empty queue");
+        }
+        Passenger item = data[head];
+        data[head] = null;
+        head = (head + 1) % data.length;
+        size--;
+        return item;
     }
 }
