@@ -17,9 +17,9 @@ import dk.cphbusiness.algorithm.examples.queues.PriorityQueue;
 public class PersonHeap implements PriorityQueue<Passenger>
 {
 
-    private Passenger[] data;
-    private int size = 0;
-    private int head = 1;
+    Passenger[] data;
+    int size = 0;
+    int head = 1;
 
     private int parentOf(int p)
     {
@@ -35,7 +35,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
     {
         return 2 * p + 1;
     }
-    private int tail = 0;
+
 
     public PersonHeap(int capacity)
     {
@@ -52,11 +52,14 @@ public class PersonHeap implements PriorityQueue<Passenger>
     @Override
     public void enqueue(Passenger person)
     {
-        int p = ++size;
-        data[p] = person;
-        //System.out.println("p =" + p + " og size er " + size);
+       // int p = ++size;
+       // System.out.println(""+p);
         size++;
-        heapingUp(p);
+        data[size] = person;
+        //System.out.println("p =" + p + " og size er " + size);
+        System.out.println("data: 1,2,3 --- 1: " + data[1]+" 2: "+data[2]+" 3: "+data[3] + " -----");
+        heapingUp(size); 
+        System.out.println("data: 1,2,3 --- 1: " + data[1]+" 2: "+data[2]+" 3: "+data[3] + " -----");
 //        if (p==1) {
 //            return;
 //        }
@@ -92,7 +95,6 @@ public class PersonHeap implements PriorityQueue<Passenger>
         if (data[p].compareTo(data[pp]) <= 0) {
             return;
         }
-        tail = (tail + 1) % data.length;
         swap(p, pp);
         p = pp;
         heapingUp(p);
@@ -116,7 +118,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
                 return;
             }
             swap(index, leftOf(index));
-            return;
+            return; 
         }
         
         
@@ -164,7 +166,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
             throw new NoSuchElementException("Cannot remove from empty queue");
         }
         Passenger item = data[1];
-        System.out.println(data[1]+""+data[2]+""+data[3]);
+        System.out.println("data: 1,2,3 --- 1:8" + data[1]+" 2:"+data[2]+" 3:"+data[3] + " -----");
         if (item == null) {
             System.out.println("jeg er null gg");
         }
