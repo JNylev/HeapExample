@@ -89,7 +89,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
         if (data[pp] == null) {
             return;
         }
-        if (data[p].compareTo(data[pp]) >= 0) {
+        if (data[p].compareTo(data[pp]) <= 0) {
             return;
         }
         tail = (tail + 1) % data.length;
@@ -168,8 +168,9 @@ public class PersonHeap implements PriorityQueue<Passenger>
         if (item == null) {
             System.out.println("jeg er null gg");
         }
-        System.out.println("og Mit ID er" + item.getCategory());
+        //System.out.println("og Mit ID er" + item.getCategory());
         data[1] = null;
+        System.out.println("swapping 1 with" +size);
         swap(1,size);
         heapingDown(1);
         head = (head + 1);
