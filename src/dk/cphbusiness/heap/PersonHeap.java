@@ -29,6 +29,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
     
     
     
+    
     private void swap(int n, int m)
     {
         data[0]=data[m];
@@ -42,7 +43,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
         int p =++size;
         data[p] = person;
         int pp = parentOf(p);
-        if (data[p].compareTo(data[pp])>0)
+        if (data[p].compareTo(data[pp])>=0)
         {
             return;
         }
