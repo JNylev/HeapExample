@@ -44,6 +44,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
 
     private void swap(int n, int m)
     {
+        System.out.println("swapping " + n +  " with " + m);
         data[0] = data[m];
         data[m] = data[n];
         data[n] = data[0];
@@ -52,32 +53,12 @@ public class PersonHeap implements PriorityQueue<Passenger>
     @Override
     public void enqueue(Passenger person)
     {
-       // int p = ++size;
-       // System.out.println(""+p);
         size++;
         data[size] = person;
-        //System.out.println("p =" + p + " og size er " + size);
-        System.out.println("data: 1,2,3 --- 1: " + data[1]+" 2: "+data[2]+" 3: "+data[3] + " -----");
+  
+       // System.out.println("data: 1,2,3 --- 1: " + data[1]+" 2: "+data[2]+" 3: "+data[3] + " -----");
         heapingUp(size); 
-        System.out.println("data: 1,2,3 --- 1: " + data[1]+" 2: "+data[2]+" 3: "+data[3] + " -----");
-//        if (p==1) {
-//            return;
-//        }
-//        int pp = parentOf(p);
-//        if (data[p]==null||data[pp] == null) {
-//            System.out.println("en af os er null");
-//        }
-//        if (data[pp]==null) {
-//            return;
-//        }
-//        if (data[p].compareTo(data[pp])>=0)
-//        {
-//            return;
-//        }
-//        tail = (tail + 1) % data.length;
-//        swap(p,pp);
-//        p=pp;
-
+      
     }
 
     public void heapingUp(int p)
@@ -92,7 +73,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
         if (data[pp] == null) {
             return;
         }
-        if (data[p].compareTo(data[pp]) <= 0) {
+        if (data[p].compareTo(data[pp]) >= 0) {
             return;
         }
         swap(p, pp);
@@ -107,14 +88,14 @@ public class PersonHeap implements PriorityQueue<Passenger>
         }
         else if(data[leftOf(index)] == null)
         {   
-            if (data[index].compareTo(data[rightOf(index)])>=0) {
+            if (data[index].compareTo(data[rightOf(index)])<=0) {
                 return;
             }
             swap(index, rightOf(index));
             return;
         }
         else if (data[rightOf(index)] == null) {
-            if (data[index].compareTo(data[leftOf(index)])>=0) {
+            if (data[index].compareTo(data[leftOf(index)])<=0) {
                 return;
             }
             swap(index, leftOf(index));
@@ -122,9 +103,9 @@ public class PersonHeap implements PriorityQueue<Passenger>
         }
         
         
-        if (data[leftOf(index)].compareTo(data[rightOf(index)]) >= 0) {
+        if (data[leftOf(index)].compareTo(data[rightOf(index)]) <= 0) {
             //leftOf is chosen
-            if (data[index].compareTo(data[leftOf(index)])>=0) {
+            if (data[index].compareTo(data[leftOf(index)])<=0) {
                 return;
             }
 
@@ -132,7 +113,7 @@ public class PersonHeap implements PriorityQueue<Passenger>
             heapingDown(leftOf(index));
         }
         else {
-            if (data[index].compareTo(data[rightOf(index)])>=0) {
+            if (data[index].compareTo(data[rightOf(index)])<=0) {
                 return;
             }
             
@@ -166,13 +147,13 @@ public class PersonHeap implements PriorityQueue<Passenger>
             throw new NoSuchElementException("Cannot remove from empty queue");
         }
         Passenger item = data[1];
-        System.out.println("data: 1,2,3 --- 1:8" + data[1]+" 2:"+data[2]+" 3:"+data[3] + " -----");
+        //System.out.println("data: 1,2,3 --- 1:8" + data[1]+" 2:"+data[2]+" 3:"+data[3] + " -----");
         if (item == null) {
             System.out.println("jeg er null gg");
         }
         //System.out.println("og Mit ID er" + item.getCategory());
         data[1] = null;
-        System.out.println("swapping 1 with" +size);
+        
         swap(1,size);
         heapingDown(1);
         head = (head + 1);
